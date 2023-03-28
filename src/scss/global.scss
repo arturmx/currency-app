@@ -1,0 +1,17 @@
+.tabs {
+  display: flex;
+  margin: 50px;
+  margin-bottom: 0;
+
+  &__item {
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-radius: 10px 10px 0 0;
+  }
+
+  &__text {
+    margin-left: 50px;
+    background-color: #f1f1f1;
+    padding: 30px;
+  }
+}

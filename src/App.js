@@ -1,24 +1,25 @@
+import {useState} from 'react';
 import './scss/global.scss'
 import Header from './components/Header'
 import Footer from './components/Footer'
 
 function App() {
+  const [isDark, setIsDark] = useState(false);
+
+  const makeDark = function() {
+    setIsDark(true);
+  }
+
+  const makeLight = function() {
+    setIsDark(false);
+  }
+
   return (
     <div className="App">
       <Header />
-      <input value="0" />
-      <select>
-        <option value="eur">EUR</option>
-        <option value="pln">PLN</option>
-        <option value="usd">USD</option>
-      </select>
-      <input value="0" />
-      <select>
-        <option value="eur">EUR</option>
-        <option value="pln">PLN</option>
-        <option value="usd">USD</option>
-      </select>
-      <Footer />
+      {/* <HeroSection />
+      <Boxes /> */}
+      <Footer isDark={isDark} />
     </div>
   );
 }
