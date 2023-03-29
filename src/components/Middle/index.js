@@ -2,7 +2,9 @@ import './middle.scss';
 import UsFlag from './img/US.png';
 import GbFlag from './img/GB.png';
 import EuFlag from './img/EU.png';
+
 const Middle = function() {
+    const activeLang = 'eu';
     
     return (
         <div className="middle">
@@ -10,10 +12,10 @@ const Middle = function() {
                 <p className="middle__p">Amount</p>
                 <div className="middle__row">
                     <div className="middle__currency">
-                        <img className="middle__flag" src={ UsFlag } alt="US logo" />
-                        {/* <img className="middle__flag" src={ GbFlag } alt="EU logo" />
-                        <img className="middle__flag" src={ EuFlag } alt="GB logo" /> */}
-                        <select className="middle__select">
+                        {activeLang === 'us' && <img className="middle__flag" src={ UsFlag } alt="US logo" />}
+                        {activeLang === 'gb' && <img className="middle__flag" src={ GbFlag } alt="GB logo" />}
+                        {activeLang === 'eu' && <img className="middle__flag" src={ EuFlag } alt="EU logo" />}
+                        <select className="middle__select" >
                             <option value="1">USD</option>
                             <option value="2">GBP</option>
                             <option value="3">EUR</option>

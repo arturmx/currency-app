@@ -22,13 +22,10 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <div className="container">
-        <Header />
-        <Middle />
-        <Footer isDark={isDark} />
-      </div>
-      
+    <div className="container">
+      <Header />
+      <Middle />
+      <Footer isDark={isDark} />
     </div>
   );
 }
