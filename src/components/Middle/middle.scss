@@ -1,0 +1,83 @@
+.middle {
+
+    &__box {
+        margin: 45px 20px 30px;
+        background-color: #FFF;
+        border-radius: 20px;
+        padding: 20px;
+        box-shadow: 0 3px 3px 0 #CCC;
+    }
+
+    &__p {
+        color: #989898;
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 18px;
+    }
+
+    &__row {
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__currency {
+        display: flex;
+        margin: 15px 0 15px;
+    }
+
+    &__flag {
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
+    }
+
+    &__select {
+        width:58px;
+        color: #26278D;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 23px;
+        background-color: transparent;
+        border: 0;
+        margin-left: 13px;
+        appearance: none;
+        background: #FFF url("./img/chevron.svg") no-repeat;
+        background-position: right -6px top 50%;
+    }
+
+    &__input {
+        background-color: #EFEFEF;
+        border: 0;
+        border-radius: 7px;
+        padding: 11px 14px 11px 0;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 23px;
+        color: #3C3C3C;
+        max-width: 141px;
+        outline: none;
+        text-align: right;
+    }
+
+    &__middle {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__button {
+        background-image: url(./img/button.png);
+        width: 44px;
+        height: 44px;
+        border: 0;
+        z-index: 1;
+    }
+
+    &__line {
+        border: 1px solid #E7E7EE;
+        position: absolute;
+        width: 100%;
+    }
+}

@@ -1,17 +1,38 @@
-.tabs {
-  display: flex;
-  margin: 50px;
-  margin-bottom: 0;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+@font-face {
+  font-family: 'Roboto, Sans-serif';
+  src: url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+// .tabs {
+//   display: flex;
+//   margin: 50px;
+//   margin-bottom: 0;
 
-  &__item {
-    padding: 10px;
-    background-color: #f1f1f1;
-    border-radius: 10px 10px 0 0;
-  }
+//   &__item {
+//     padding: 10px;
+//     background-color: #f1f1f1;
+//     border-radius: 10px 10px 0 0;
+//   }
 
-  &__text {
-    margin-left: 50px;
-    background-color: #f1f1f1;
-    padding: 30px;
-  }
+//   &__text {
+//     margin-left: 50px;
+//     background-color: #f1f1f1;
+//     padding: 30px;
+//   }
+// }
+
+.app {
+  background-color: #CCC;
+  font-family: Roboto, Sans-serif;
+}
+
+.container {
+  width: 360px;
+  margin: auto;
+  background-color: #EAEAFE;
 }

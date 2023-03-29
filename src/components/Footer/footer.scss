@@ -1,10 +1,23 @@
 .footer {
-    &.dark {
-        background-color: black;
-        color: white;
+    // &.dark {
+    //     background-color: black;
+    //     color: white;
+    // }
+
+    // &__h2 {
+    //     color: red;
+    // }
+
+    &__p {
+        color: #A1A1A1;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 19px;
     }
 
-    &__h2 {
-        color: red;
+    &__rate {
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 21px;
     }
 }

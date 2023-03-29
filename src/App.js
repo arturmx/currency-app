@@ -1,7 +1,14 @@
 import {useState} from 'react';
-import './scss/global.scss'
-import Header from './components/Header'
-import Footer from './components/Footer'
+import './scss/reset.scss';
+import './scss/global.scss';
+import "./fonts/fonts.css";
+import "./fonts/Roboto-Bold.ttf";
+import "./fonts/Roboto-Regular.ttf";
+import "./fonts/Roboto-Medium.ttf";
+import Header from './components/Header';
+import Middle from './components/Middle';
+import Footer from './components/Footer';
+
 
 function App() {
   const [isDark, setIsDark] = useState(false);
@@ -16,10 +23,12 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
-      {/* <HeroSection />
-      <Boxes /> */}
-      <Footer isDark={isDark} />
+      <div className="container">
+        <Header />
+        <Middle />
+        <Footer isDark={isDark} />
+      </div>
+      
     </div>
   );
 }

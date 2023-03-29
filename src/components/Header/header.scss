@@ -1,25 +1,35 @@
 .header {
     margin: auto;
-    width: 500px;
-    background-color: #f1f1f1;
+    text-align: center;
+    padding: 55px 20px 0;
 
-    &.dark {
-        background-color: black;
-        color: white;
-    }
+    // &.dark {
+    //     background-color: black;
+    //     color: white;
+    // }
 
+    // .box {
+    //     width: 50px;
+    //     height: 50px;
+    //     background-color: #fff;
+    //     margin: 30px;
+
+    //     &.red {
+    //         background-color: red;
+    //     }
+    // }
     &__h1 {
-        text-align: center;
+        color: #1F2261;
+        font-size: 25px;
+        font-weight: 700;
+        line-height: 29px;
     }
 
-    .box {
-        width: 50px;
-        height: 50px;
-        background-color: #fff;
-        margin: 30px;
-
-        &.red {
-            background-color: red;
-        }
+    &__p {
+        color: #808080;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 19px;
+        margin-top: 10px;
     }
 }
