@@ -1,12 +1,5 @@
 .footer {
-    // &.dark {
-    //     background-color: black;
-    //     color: white;
-    // }
-
-    // &__h2 {
-    //     color: red;
-    // }
+    padding: 0 20px 30px;
 
     &__p {
         color: #A1A1A1;
@@ -19,5 +12,6 @@
         font-size: 18px;
         font-weight: 500;
         line-height: 21px;
+        margin-top: 13px;
     }
 }

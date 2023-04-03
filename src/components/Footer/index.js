@@ -1,4 +1,5 @@
 import './footer.scss'
+// import '../../scss/global.scss'
 
 const Footer = function({isDark}) {
     return (
@@ -7,10 +8,8 @@ const Footer = function({isDark}) {
         // </div>
 
         <div className="footer">
-            <div className="container">
-                <p className="footer__p">Indicative Exchange Rate</p>
-                <p className="footer__rate"></p>
-            </div>
+            <p className="footer__p">Indicative Exchange Rate</p>
+            <p className="footer__rate">1 SGD = 0.7367 USD</p>
         </div>
     )
 }
