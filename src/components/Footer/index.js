@@ -1,16 +1,19 @@
 import './footer.scss'
-// import '../../scss/global.scss'
+// import { useState } from 'react';
+// import Selection from '../Selection'
 
-const Footer = function({isDark}) {
-    return (
-        // <div className={`footer ${isDark ? 'dark' : ''}`}>
-        //     <h2 className="footer__h2">END</h2>
+const Footer = function() {
+
+    // nie działa
+    // < Selection />
+    // Selection();
+
+    // return (
+        
+        // <div className="footer">
+        //     <p className="footer__p">Indicative Exchange Rate</p>
+        //     <p className="footer__rate">1 {} = 0.7367 USD</p>
         // </div>
-
-        <div className="footer">
-            <p className="footer__p">Indicative Exchange Rate</p>
-            <p className="footer__rate">1 SGD = 0.7367 USD</p>
-        </div>
-    )
+        // )
 }
 export default Footer

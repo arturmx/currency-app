@@ -44,6 +44,7 @@
         appearance: none;
         background: #FFF url("./img/chevron.svg") no-repeat;
         background-position: right -6px top 50%;
+
     }
 
     &__input {
@@ -73,6 +74,11 @@
         height: 44px;
         border: 0;
         z-index: 1;
+        transition: all 0.1s;
+
+        &:active {
+            transform: rotate(180deg);
+        }
     }
 
     &__line {
