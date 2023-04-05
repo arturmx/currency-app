@@ -12,15 +12,18 @@ const options = [
 
 
 const Middle = function() {
-    // dollar to pound:
+
     let [rate, setRate] = useState();
     let [selected1, setSelected1] = useState(options[0].value);
     let [selected2, setSelected2] = useState(options[1].value);
     let [input1, setInput1] = useState(0);
     let [input2, setInput2] = useState(0);
 
+    fetch(`https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${selected1}/${selected2}.json`)
+        .then((response) => response.json())
+        .then((data) => setRate(data[selected2]));
 
-    let fechRatio = function() {
+    let fetchRatio = function() {
         fetch(`https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${selected1}/${selected2}.json`)
         .then((response) => response.json())
         .then((data) => setRate(data[selected2]));
@@ -38,12 +41,12 @@ const Middle = function() {
         const val = event.target.value;
 
         if (val < 0) {
-            setInput1(0);
+            setInput1(1);
         } else {
             setInput1(val);
         }
 
-        await fechRatio();
+        await fetchRatio();
 
         setInput2((val * rate).toFixed(2))
     }
@@ -55,16 +58,16 @@ const Middle = function() {
         let buffer2;
         let buffer3;
         let buffer4;
-        buffer1 = input1.value;
-        buffer2 = input2.value;
-        input2.value = buffer1;
-        input1.value = buffer2;
+        buffer1 = input1;
+        buffer2 = input2;
+        input2 = buffer1;
+        input1 = buffer2;
         buffer3 = selected1;
         buffer4 = selected2;
         selected1 = buffer4;
         selected2 = buffer3;
+        console.log(selected1)
     }
-
     return (
         <div className="middle">
             <div className="middle__box">
@@ -80,7 +83,7 @@ const Middle = function() {
                             })}
                         </select>
                     </div>
-                    <input id="input1" className="middle__input" onChange={inputChange1} value={input1} type="number" />
+                    <input id="input1" className="middle__input" onChange={inputChange1} value={input1} type="tel" />
                 </div>
                 <div className="middle__middle">
                     <div className="middle__line"></div>
@@ -102,7 +105,7 @@ const Middle = function() {
             </div>
             <div className="footer">
                 <p className="footer__p">Indicative Exchange Rate</p>
-                <p className="footer__rate">1 {selected1} = {(rate || '?') + selected2}</p>
+                <p className="footer__rate">1 {selected1.toUpperCase()} = {rate + " " + selected2.toUpperCase()}</p>
             </div>
         </div>
     )
