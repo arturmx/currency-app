@@ -2,123 +2,68 @@ import './middle.scss';
 import UsFlag from './img/US.png';
 import GbFlag from './img/GB.png';
 import EuFlag from './img/EU.png';
-import Selection from '../Selection'
 import { useState } from 'react';
 
+const options = [
+    {value: 'usd'},
+    {value: 'gbp'},
+    {value: 'eur'},
+];
+
+
 const Middle = function() {
-
-// dollar to pound:
-
-let [usdGbp, setUsdGbp] = useState();
-let usdGbpObj = fetch (`https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd/gbp.json`)
-.then((response) => response.json())
-.then((usdGbpObj) => setUsdGbp(usdGbpObj.gbp));
-
-// dollar to euro:
-
-let [usdEur, setUsdEur] = useState();
-let usdEurObj = fetch (`https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd/eur.json`)
-.then((response) => response.json())
-.then((usdEurObj) => setUsdEur(usdEurObj.eur));
-
-// pound to dollar:
-
-let [gbpUsd, setGbpUsd] = useState();
-let gbpUsdObj = fetch (`https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/gbp/usd.json`)
-.then((response) => response.json())
-.then((gbpUsdObj) => setGbpUsd(gbpUsdObj.usd));
-
-// pound to euro:
-
-let [gbpEur, setGbpEur] = useState();
-let gbpEurObj = fetch (`https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/gbp/eur.json`)
-.then((response) => response.json())
-.then((gbpEurObj) => setGbpEur(gbpEurObj.eur));
-
-// euro to pound:
-
-let [eurGbp, setEurGbp] = useState();
-let eurGbpObj = fetch (`https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/eur/gbp.json`)
-.then((response) => response.json())
-.then((eurGbpObj) => setEurGbp(eurGbpObj.gbp));
-
-// euro to dollar:
-
-let [eurUsd, setEurUsd] = useState();
-let eurUsdObj = fetch (`https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/eur/usd.json`)
-.then((response) => response.json())
-.then((eurUsdObj) => setEurUsd(eurUsdObj.usd));
+    // dollar to pound:
+    let [rate, setRate] = useState();
+    let [selected1, setSelected1] = useState(options[0].value);
+    let [selected2, setSelected2] = useState(options[1].value);
+    let [input1, setInput1] = useState(0);
+    let [input2, setInput2] = useState(0);
 
 
-const option = [
-    {value: 'USD'},
-    {value: 'GBP'},
-    {value: 'EUR'},
-  ];
-
-let [selected, setSelected] = useState(option[0].value)
-const handleChange = (event) => {
-    setSelected(event.target.value);
-    input1.value = 0;
-    input2.value = 0;
-};
-
-let [selected2, setSelected2] = useState(option[0].value)
-const handleChange2 = event => {
-    setSelected2(event.target.value);
-    input1.value = 0;
-    input2.value = 0;
-};
-
-
-let rate = function() {
-    if (selected === selected2) {
-        return 1
+    let fechRatio = function() {
+        fetch(`https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${selected1}/${selected2}.json`)
+        .then((response) => response.json())
+        .then((data) => setRate(data[selected2]));
     }
-    else if (selected === 'USD' && selected2 === 'GBP') {
-        return usdGbp
-    }
-    else if (selected === 'USD' && selected2 === 'EUR') {
-        return usdEur
-    }
-    else if (selected === 'GBP' && selected2 === 'USD') {
-        return gbpUsd
-    }
-    else if (selected === 'GBP' && selected2 === 'EUR') {
-        return gbpEur
-    }
-    else if (selected === 'EUR' && selected2 === 'USD') {
-        return eurUsd
-    }
-    else if (selected === 'EUR' && selected2 === 'GBP') {
-        return eurGbp
-    }
-}
 
-const input1 = document.querySelector('#input1');
-const input2 = document.querySelector('#input2');
+    const handleChange1 = (event) => {
+        setSelected1(event.target.value);
+    };
 
-// buggy!!!!!  math round na wyniku!!!!!!
+    const handleChange2 = (event) => {
+        setSelected2(event.target.value);
+    };
 
-const inputChange = function() {
-    return input2.value = input1.value * rate();
-}
-const button = document.querySelector('.middle__button')
-const buttonClick = function() {
-    button.classList.toggle('active');
-    let buffer1;
-    let buffer2;
-    let buffer3;
-    let buffer4;
-    buffer1 = input1.value;
-    buffer2 = input2.value;
-    input2.value = buffer1;
-    input1.value = buffer2;
-    buffer3 = selected;
-    buffer4 = selected2;
-    selected = buffer4;
-    selected2 = buffer3;
-}
+    const inputChange1 = async function(event) {
+        const val = event.target.value;
+
+        if (val < 0) {
+            setInput1(0);
+        } else {
+            setInput1(val);
+        }
+
+        await fechRatio();
+
+        setInput2((val * rate).toFixed(2))
+    }
+
+    const button = document.querySelector('.middle__button')
+    const buttonClick = function() {
+        button.classList.toggle('active');
+        let buffer1;
+        let buffer2;
+        let buffer3;
+        let buffer4;
+        buffer1 = input1.value;
+        buffer2 = input2.value;
+        input2.value = buffer1;
+        input1.value = buffer2;
+        buffer3 = selected1;
+        buffer4 = selected2;
+        selected1 = buffer4;
+        selected2 = buffer3;
+    }
 
     return (
         <div className="middle">
@@ -126,16 +71,16 @@ const buttonClick = function() {
                 <p className="middle__p">Amount</p>
                 <div className="middle__row">
                     <div className="middle__currency middle__base">
-                        {selected === 'USD' ? <img className="middle__flag" src={ UsFlag } alt="US logo" /> : null}
-                        {selected === 'GBP' ? <img className="middle__flag" src={ GbFlag } alt="GB logo" /> : null}
-                        {selected === 'EUR' ? <img className="middle__flag" src={ EuFlag } alt="EU logo" /> : null}
-                        <select className="middle__select" value={selected} onChange= {handleChange} >
-                            <option value={option[0].value}>{option[0].value}</option>
-                            <option value={option[1].value}>{option[1].value}</option>
-                            <option value={option[2].value}>{option[2].value}</option>
+                        {selected1 === 'usd' ? <img className="middle__flag" src={ UsFlag } alt="US logo" /> : null}
+                        {selected1 === 'gbp' ? <img className="middle__flag" src={ GbFlag } alt="GB logo" /> : null}
+                        {selected1 === 'eur' ? <img className="middle__flag" src={ EuFlag } alt="EU logo" /> : null}
+                        <select className="middle__select" value={selected1} onChange={handleChange1} >
+                            { options.map(function(el, i) {
+                                return <option key={i} value={el.value}>{el.value.toUpperCase()}</option>
+                            })}
                         </select>
                     </div>
-                    <input id="input1" className="middle__input" onChange= {inputChange} />
+                    <input id="input1" className="middle__input" onChange={inputChange1} value={input1} type="number" />
                 </div>
                 <div className="middle__middle">
                     <div className="middle__line"></div>
@@ -143,23 +88,21 @@ const buttonClick = function() {
                 </div>
                 <div className="middle__row">
                     <div className="middle__currency middle__converted">
-                        {selected2 === 'USD' ? <img className="middle__flag" src={ UsFlag } alt="US logo" /> : null}
-                        {selected2 === 'GBP' ? <img className="middle__flag" src={ GbFlag } alt="GB logo" /> : null}
-                        {selected2 === 'EUR' ? <img className="middle__flag" src={ EuFlag } alt="EU logo" /> : null}
-                        <select className="middle__select" value={selected2} onChange= {handleChange2}>
-                            <option value={option[0].value}>{option[0].value}</option>
-                            <option value={option[1].value}>{option[1].value}</option>
-                            <option value={option[2].value}>{option[2].value}</option>
+                        {selected2 === 'usd' ? <img className="middle__flag" src={ UsFlag } alt="US logo" /> : null}
+                        {selected2 === 'gbp' ? <img className="middle__flag" src={ GbFlag } alt="GB logo" /> : null}
+                        {selected2 === 'eur' ? <img className="middle__flag" src={ EuFlag } alt="EU logo" /> : null}
+                        <select className="middle__select" value={selected2} onChange={handleChange2}>
+                            { options.map(function(el, i) {
+                                return <option key={i} value={el.value}>{el.value.toUpperCase()}</option>
+                            })}
                         </select>
                     </div>
-                    <input id="input2" className="middle__input" />
+                    <input id="input2" className="middle__input" value={input2} />
                 </div>
             </div>
-
-{/* !!!!!!!!!!! to powinno być w componencie footer */}
             <div className="footer">
                 <p className="footer__p">Indicative Exchange Rate</p>
-                <p className="footer__rate">1 {selected} = {rate()} {selected2}</p>
+                <p className="footer__rate">1 {selected1} = {(rate || '?') + selected2}</p>
             </div>
         </div>
     )
